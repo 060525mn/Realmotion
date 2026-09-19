@@ -20,7 +20,13 @@ export default async function handler(req, res) {
           "Accept": "application/json"
         },
         body: JSON.stringify({
-          prompt: prompt
+          name: "RealMotion AI Video",
+          end_seconds: 5,
+          orientation: "landscape",
+          resolution: "720p",
+          style: {
+            prompt: prompt
+          }
         })
       }
     );
@@ -28,6 +34,7 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     return res.status(response.status).json(data);
+
   } catch (error) {
     return res.status(500).json({
       error: error.message
