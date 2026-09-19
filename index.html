@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RealMotion AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#090b10;color:#fff;padding:20px}
+.app{max-width:700px;margin:auto}
+h1{font-size:32px;margin-bottom:6px}
+.sub{color:#aeb4c0;margin-bottom:25px}
+.card{background:#121620;border:1px solid #252b38;border-radius:18px;padding:18px;margin-bottom:15px}
+label{display:block;margin:12px 0 7px;font-weight:bold}
+textarea,select{width:100%;padding:13px;border-radius:10px;border:1px solid #343b4a;background:#0c1018;color:white;font-size:15px}
+textarea{min-height:130px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{width:100%;padding:15px;border:0;border-radius:12px;background:#fff;color:#000;font-weight:bold;font-size:16px;cursor:pointer;margin-top:18px}
+.status{color:#aeb4c0;text-align:center;margin-top:14px;font-size:14px}
+@media(max-width:500px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+<h1>RealMotion AI</h1>
+<div class="sub">Create highly realistic AI videos from your ideas.</div>
+
+<div class="card">
+<label for="prompt">Describe your video</label>
+<textarea id="prompt" placeholder="Example: A realistic African elephant walking through a misty forest at sunrise..."></textarea>
+
+<div class="grid">
+<div>
+<label>Aspect ratio</label>
+<select id="ratio">
+<option>16:9</option><option>9:16</option><option>1:1</option>
+</select>
+</div>
+<div>
+<label>Duration</label>
+<select id="duration">
+<option>5 seconds</option><option>10 seconds</option>
+</select>
+</div>
+<div>
+<label>Camera</label>
+<select id="camera">
+<option>Cinematic</option><option>Handheld documentary</option><option>Drone</option><option>Close-up</option><option>Tracking shot</option>
+</select>
+</div>
+<div>
+<label>Style</label>
+<select id="style">
+<option>Photorealistic</option><option>Documentary</option><option>Commercial</option><option>Natural daylight</option>
+</select>
+</div>
+</div>
+
+<button onclick="generate()">Generate Video</button>
+<div class="status" id="status">Video generation engine will be connected here.</div>
+</div>
+</div>
+
+<script>
+function generate(){
+ const prompt=document.getElementById('prompt').value.trim();
+ const status=document.getElementById('status');
+ if(!prompt){status.textContent='Please describe the video first.';return;}
+ status.textContent='Your video request is ready. The AI video engine will be connected next.';
+}
+</script>
+</body>
+</html>
