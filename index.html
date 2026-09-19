@@ -72,7 +72,7 @@ async function generate() {
   status.textContent = "Sending your video request...";
 
   try {
-    const response = await fetch("YOUR_BACKEND_URL", {
+    const response = await fetch("/api/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
