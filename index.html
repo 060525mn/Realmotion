@@ -54,20 +54,46 @@ button{width:100%;padding:15px;border:0;border-radius:12px;background:#fff;color
 <option>Photorealistic</option><option>Documentary</option><option>Commercial</option><option>Natural daylight</option>
 </select>
 </div>
-</div>
-
-<button onclick="generate()">Generate Video</button>
+</div><button onclick="generate()">Generate Video</button>
 <div class="status" id="status">Video generation engine will be connected here.</div>
 </div>
 </div>
 
 <script>
-function generate(){
- const prompt=document.getElementById('prompt').value.trim();
- const status=document.getElementById('status');
- if(!prompt){status.textContent='Please describe the video first.';return;}
- status.textContent='Your video request is ready. The AI video engine will be connected next.';
+async function generate() {
+  const prompt = document.getElementById("prompt").value.trim();
+  const status = document.getElementById("status");
+
+  if (!prompt) {
+    status.textContent = "Please describe the video first.";
+    return;
+  }
+
+  status.textContent = "Sending your video request...";
+
+  try {
+    const response = await fetch("YOUR_BACKEND_URL", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        prompt: prompt
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Video generation failed.");
+    }
+
+    status.textContent = "Video generation started!";
+  } catch (error) {
+    status.textContent = "Error: " + error.message;
+  }
 }
 </script>
+
 </body>
 </html>
